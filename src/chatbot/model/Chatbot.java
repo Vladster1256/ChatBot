@@ -37,24 +37,36 @@ public class Chatbot
 	}
 	
 	/**
-	 * 
-	 * @return
+	 * gives us chatcount
+	 * @return chatcount
 	 */
 	public int getChatCount()
 	{
 		return chatCount;
 	}
 	
+	/**
+	 *This sets the name for the chatbot
+	 * @param name makes the name of the chatbot equal to this chatbot
+	 */
 	public void setName(String name)
 	{
 		this.name = name;
 	}
 	
+	/**
+	 * updates the chatcount per one every chat
+	 */
 	private void updateChatCount()
 	{
 		chatCount++;
 	}
 	
+	/**
+	 * This checks our input for sayonara and returns okToQuit to the ChatbotAppController
+	 * @param input analizes our input
+	 * @return returns our okToQuit
+	 */
 	public boolean quitChecker(String input)
 	{
 		boolean okToQuit = false;
