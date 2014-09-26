@@ -1,5 +1,10 @@
 package chatbot.model;
 
+/**
+ * The chatbot model class. Used for checking and manipulating Strings.
+ * @author Vladster1256
+ *@version 1.1 9/26/14
+ */
 public class Chatbot
 {
 
