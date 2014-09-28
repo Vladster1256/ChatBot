@@ -12,6 +12,10 @@ public class Chatbot
 	 * @param name The supplied name for the Chatbot.
 	 */
 	private String name;
+	
+	/**
+	 * This is for the chatCount
+	 */
 	private int chatCount;
 	
 	/**
@@ -63,18 +67,37 @@ public class Chatbot
 	}
 	
 	/**
-	 * This checks our input for sayonara and returns okToQuit to the ChatbotAppController
-	 * @param input analizes our input
+	 * This checks our input for quit and returns okToQuit to the ChatbotAppController
+	 * @param input analyzes our input
 	 * @return returns our okToQuit
 	 */
 	public boolean quitChecker(String input)
 	{
 		boolean okToQuit = false;
 		
-		if(input.equalsIgnoreCase("sayonara"))
+		if(input.equalsIgnoreCase("quit"))
 		{
 			okToQuit=true;
 		}
 		return okToQuit;
+	}
+	
+	/**
+	 * This checks how long our input is and return true or false
+	 * @param input analyzes the input
+	 * @return our longTextChecker
+	 */
+	public boolean longTextChecker(String input)
+	{
+		boolean longTextChecker = false;
+		if(input.length()>=50)
+		{
+			 longTextChecker = true;
+		}
+		else
+		{
+			longTextChecker = false;
+		}
+		return longTextChecker;
 	}
 }
