@@ -1,5 +1,7 @@
 package chatbot.model;
 
+import java.util.ArrayList;
+
 /**
  * The chatbot model class. Used for checking and manipulating Strings.
  * @author Vladster1256
@@ -7,6 +9,8 @@ package chatbot.model;
  */
 public class Chatbot
 {
+	private ArrayList <String> memeList;
+	
 	/**
 	 * Creates a ChatBot Object with the supplied name and initializes the current number of chats to 0.
 	 * @param name The supplied name for the Chatbot.
@@ -75,7 +79,7 @@ public class Chatbot
 	{
 		boolean okToQuit = false;
 		
-		if(input.equalsIgnoreCase("quit"))
+		if(input != null && input.equalsIgnoreCase("quit"))
 		{
 			okToQuit=true;
 		}
@@ -87,10 +91,10 @@ public class Chatbot
 	 * @param input analyzes the input
 	 * @return our longTextChecker
 	 */
-	public boolean longTextChecker(String input)
+	private boolean longTextChecker(String input)
 	{
 		boolean longTextChecker = false;
-		if(input.length()>=50)
+		if(input !=null && input.length()>=50)
 		{
 			 longTextChecker = true;
 		}
@@ -100,4 +104,18 @@ public class Chatbot
 		}
 		return longTextChecker;
 	}
+	
+	public String processText(String current)
+	{	
+		if (longTextChecker(current))
+		{
+			return "Wow long thang";
+		}
+		else
+		{
+			return current;
+		}
+		
+	}
+	
 }
