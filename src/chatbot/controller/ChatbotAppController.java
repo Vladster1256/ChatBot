@@ -17,6 +17,9 @@ public class ChatbotAppController
 		mySillyChatbot = new Chatbot("Steve");
 	}
 	
+	/**
+	 * This initialized the start 
+	 */
 	public void start()
 	{
 		String result = applicationView.showChatbot("Steve");
@@ -30,6 +33,9 @@ public class ChatbotAppController
 		quit();
 	}
 	
+	/**
+	 * This quits the application and calls a last window
+	 */
 	private void quit()
 	{
 		JOptionPane.showMessageDialog(null, "GOOD BYE!!!!!!!!");

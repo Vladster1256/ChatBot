@@ -105,6 +105,11 @@ public class Chatbot
 		return longTextChecker;
 	}
 	
+	/**
+	 * Processes input from the user against the checker methods. Returns the next output for the view
+	 * @param current The supplied text.
+	 * @return The processed text bassed on checker or other methods.
+	 */
 	public String processText(String current)
 	{	
 		if (longTextChecker(current))
@@ -114,8 +119,7 @@ public class Chatbot
 		else
 		{
 			return current;
-		}
-		
+		}	
 	}
 	
 }
