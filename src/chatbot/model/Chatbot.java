@@ -28,38 +28,10 @@ public class Chatbot
 	 */
 	public Chatbot(String name)
 	{
+		memeList = new ArrayList<String>();
 		this.name = name;
-	}
-	
-	/**
-	 * This is a really important method. Add lots of lines
-	 * and more
-	 * and more
-	 * more lines
-	 * much wow!!
-	 * @returns name to the chatbot app controller
-	 */
-	public String getName()
-	{
-		return name;
-	}
-	
-	/**
-	 * gives us chatcount
-	 * @return chatcount
-	 */
-	public int getChatCount()
-	{
-		return chatCount;
-	}
-	
-	/**
-	 *This sets the name for the chatbot
-	 * @param name makes the name of the chatbot equal to this chatbot
-	 */
-	public void setName(String name)
-	{
-		this.name = name;
+		chatCount = 0;
+		fillTheMemeList();
 	}
 	
 	/**
@@ -68,6 +40,29 @@ public class Chatbot
 	private void updateChatCount()
 	{
 		chatCount++;
+	}
+	
+	private boolean memeChecker(String input)
+	{
+		boolean isAMeme = false;
+			
+		for (String currentMeme : memeList)
+		{
+			if(input.equalsIgnoreCase(currentMeme))
+			{
+				isAMeme = true;
+			}
+			
+		}
+		for (int loopCounter = 0; loopCounter < memeList.size(); loopCounter++)
+		{
+			if(input.equalsIgnoreCase(memeList.get(loopCounter)))
+			{
+				isAMeme = true;
+			}
+		}
+		
+		return isAMeme;
 	}
 	
 	/**
@@ -106,20 +101,69 @@ public class Chatbot
 	}
 	
 	/**
+	 * This is a really important method. Add lots of lines
+	 * and more
+	 * and more
+	 * more lines
+	 * much wow!!
+	 * @returns name to the chatbot app controller
+	 */
+	public String getName()
+	{
+		return name;
+	}
+	
+	/**
+	 * gives us chatcount
+	 * @return chatcount
+	 */
+	public int getChatCount()
+	{
+		return chatCount;
+	}
+	
+	/**
+	 *This sets the name for the chatbot
+	 * @param name makes the name of the chatbot equal to this chatbot
+	 */
+	public void setName(String name)
+	{
+		this.name = name;
+	}
+	
+	private void fillTheMemeList()
+	{
+		memeList.add("kitties");
+		memeList.add("one does not simply");
+		memeList.add("doge");
+		memeList.add("why u no");
+		memeList.add("what if");
+		memeList.add("success");
+		memeList.add("challenge accepted");
+	}
+	
+	/**
 	 * Processes input from the user against the checker methods. Returns the next output for the view
 	 * @param current The supplied text.
-	 * @return The processed text bassed on checker or other methods.
+	 * @return The processed text based on checker or other methods.
 	 */
 	public String processText(String current)
 	{	
+		String result = "";
 		if (longTextChecker(current))
 		{
-			return "Wow long thang";
+			result =  "Wow long what a long message to me, Thanks :|";
+		}	
+		
+		else if (memeChecker(current))
+		{
+			result  +=  "wow, " + current + " is a meme, wahoo!";
 		}
 		else
 		{
-			return current;
-		}	
+			result += current;
+		}
+		return result;
 	}
 	
 }
