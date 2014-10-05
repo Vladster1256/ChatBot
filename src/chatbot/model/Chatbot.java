@@ -101,6 +101,25 @@ public class Chatbot
 	}
 	
 	/**
+	 * This checks if the phase contains the word awesome and returns true or false
+	 * @param input if the user input matches awesome
+	 * @return true or false to containingChecker
+	 */
+	private boolean containingChecker(String input)
+	{
+		boolean containingChecker = false;
+		if(input !=null && input.contains("awesome"))
+		{
+			containingChecker = true;
+		}
+		else
+		{
+			containingChecker = false;
+		}
+		return containingChecker;
+	}
+	
+	/**
 	 * This is a really important method. Add lots of lines
 	 * and more
 	 * and more
@@ -158,6 +177,10 @@ public class Chatbot
 		else if (memeChecker(current))
 		{
 			result  +=  "wow, " + current + " is a meme, wahoo!";
+		}
+		else if (containingChecker(current))
+		{
+			result = "Did that phrase contain awesome?";
 		}
 		else
 		{
