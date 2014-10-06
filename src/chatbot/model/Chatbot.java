@@ -48,7 +48,7 @@ public class Chatbot
 			
 		for (String currentMeme : memeList)
 		{
-			if(input.equalsIgnoreCase(currentMeme))
+			if(input !=null && input.equalsIgnoreCase(currentMeme))
 			{
 				isAMeme = true;
 			}
@@ -56,7 +56,7 @@ public class Chatbot
 		}
 		for (int loopCounter = 0; loopCounter < memeList.size(); loopCounter++)
 		{
-			if(input.equalsIgnoreCase(memeList.get(loopCounter)))
+			if(input !=null && input.equalsIgnoreCase(memeList.get(loopCounter)))
 			{
 				isAMeme = true;
 			}
