@@ -4,10 +4,22 @@ import javax.swing.JOptionPane;
 
 import chatbot.controller.ChatbotAppController;
 
+/**
+ * This is where our chatbot will show up, all of the input is analized by the chatbot, chatbotAppController, and sent to here for GUI
+ * @author Vladster1256
+ * @version 1.0
+ */
 public class ChatbotView
 {
+	/**
+	 * sets ChatbotAppController as the baseController
+	 */
 	private ChatbotAppController baseController;
 	
+	/**
+	 * makes the basecontroller = to the basecontroller we need
+	 * @param baseController is what our ChatBotAppController is
+	 */
 	public ChatbotView(ChatbotAppController baseController)
 	{
 		this.baseController = baseController;

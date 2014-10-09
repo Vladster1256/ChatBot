@@ -70,8 +70,7 @@ public class Chatbot
 		}
 		for (int loopCounter = 0; loopCounter < memeList.size(); loopCounter++)
 		{
-			if (input != null
-					&& input.equalsIgnoreCase(memeList.get(loopCounter)))
+			if (input != null && input.equalsIgnoreCase(memeList.get(loopCounter)))
 			{
 				isAMeme = true;
 			}
@@ -112,7 +111,8 @@ public class Chatbot
 		if (input != null && input.length() >= 50)
 		{
 			longTextChecker = true;
-		} else
+		}
+		else
 		{
 			longTextChecker = false;
 		}
@@ -133,7 +133,8 @@ public class Chatbot
 		if (input != null && input.contains("awesome"))
 		{
 			containingChecker = true;
-		} else
+		}
+		else
 		{
 			containingChecker = false;
 		}
@@ -172,6 +173,9 @@ public class Chatbot
 		this.name = name;
 	}
 
+	/**
+	 * This is what our array list consists off
+	 */
 	private void fillTheMemeList()
 	{
 		memeList.add("kitties");
@@ -199,16 +203,17 @@ public class Chatbot
 
 			if (longTextChecker(current))
 			{
-				result = "Wow long what a long message to me, Thanks :|";
+				result += "Wow long what a long message to me, Thanks :|";
 			}
-
 			else if (memeChecker(current))
 			{
 				result += "wow, " + current + " is a meme, wahoo!";
-			} else if (containingChecker(current))
+			}
+			else if (containingChecker(current))
 			{
 				result = "Did that phrase contain awesome?";
-			} else
+			}
+			else
 			{
 				result += current;
 			}

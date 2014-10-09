@@ -17,7 +17,9 @@ public class ChatbotAppController
 	private String startMessage;
 	private String quitMessage;
 	
-	
+	/**
+	 * This instantiates objects with the values
+	 */
 	public ChatbotAppController()
 	{
 		applicationView = new ChatbotView(this);
@@ -26,6 +28,10 @@ public class ChatbotAppController
 		quitMessage = "goodbye cruel user :(";
 	}
 	
+	/**
+	 * this sends MySillyChatbot to the chatbot class
+	 * @return mySillychatbot
+	 */
 	public Chatbot getMySillyChatbot()
 	{
 		return mySillyChatbot;
