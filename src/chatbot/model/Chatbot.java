@@ -112,7 +112,8 @@ public class Chatbot
 		if (input != null && input.length() >= 50)
 		{
 			longTextChecker = true;
-		} else
+		} 
+		else
 		{
 			longTextChecker = false;
 		}
@@ -190,7 +191,8 @@ public class Chatbot
 	 * Processes input from the user against the checker methods. Returns the
 	 * next output for the view
 	 * 
-	 * @param current The supplied text.
+	 * @param current
+	 *            The supplied text.
 	 * @return The processed text based on checker or other methods.
 	 */
 	public String processText(String current)
@@ -199,54 +201,54 @@ public class Chatbot
 		if (current != null)
 		{
 
-			int randomPosition = (int)(Math.random() * 3);
-			if(current !=null)
+			int randomPosition = (int) (Math.random() * 3);
+			if (current != null)
 			{
-			if(randomPosition == 0)
-			{
-				if (longTextChecker(current))
+				if (randomPosition == 0)
 				{
-					result = "Wow long what a long message to me, Thanks :|" + current;
-				}
-				else
+					if (longTextChecker(current))
+					{
+						result = "Wow long what a long message to me, Thanks :| "
+								+ current;
+					} 
+					else
+					{
+						result = "Do you think you could make the phrase a little shorter?";
+					}
+				} 
+				else if (randomPosition == 1)
 				{
-					result = "Do you think you could make the phrase a little shorter?";
-				}
-			}
-			else if(randomPosition == 1)
-			{
-				if (containingChecker(current))
+					if (containingChecker(current))
+					{
+						result = "Did that phrase contain awesome?";
+					} 
+					else
+					{
+						result = "The last phrase did not contain awesome, you are not awesome anymore";
+					}
+				} 
+				else if (randomPosition == 2)
 				{
-					result = "Did that phrase contain awesome?";
+					if (memeChecker(current))
+					{
+						result += "wow, " + current + " is a meme, wahoo!";
+					} 
+					else
+					{
+						result += "You didn't list a meme i like";
+					}
 				} 
 				else
 				{
-					result = "The last phrase did not contain awesome, you are not awesome anymore";
+					result += current;
 				}
 			}
-			else if(randomPosition == 2)
-			{
-				if (memeChecker(current))
-				{
-					result += "wow, " + current + " is a meme, wahoo!";
-				} 
-				else
-				{
-					result += "You didn't list a meme i like";
-				}
-			}
-			else
-			{
-				result += current;
-			}
-		}
-		}
-		else 
+		} 
+		else
 		{
-			result = "Did you try close me out, oh no you didn't";
+			result = "Did you try close me out? oh no you didn't!!!!!!!!!!!!";
 		}
 		return result;
 	}
 
 }
-	
