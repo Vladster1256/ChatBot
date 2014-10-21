@@ -3,6 +3,7 @@ package chatbot.controller;
 import javax.swing.JOptionPane;
 
 import chatbot.model.Chatbot;
+import chatbot.view.ChatbotFrame;
 import chatbot.view.ChatbotView;
 
 /**
@@ -12,10 +13,17 @@ import chatbot.view.ChatbotView;
  */
 public class ChatbotAppController
 {
+	/**
+	 * The instance of the app view, view of this app
+	 */
 	private ChatbotView applicationView;
 	private Chatbot mySillyChatbot;
 	private String startMessage;
 	private String quitMessage;
+	/**
+	 * Reference to the GUI JFrame object for the application
+	 */
+	private ChatbotFrame appFrame;
 	
 	/**
 	 * This instantiates objects with the values
@@ -23,6 +31,7 @@ public class ChatbotAppController
 	public ChatbotAppController()
 	{
 		applicationView = new ChatbotView(this);
+		appFrame = new ChatbotFrame(this);
 		mySillyChatbot = new Chatbot("Steve");
 		startMessage = "Welcome to TEH awesome " + mySillyChatbot.getName() +" chatbot. What is your name?";
 		quitMessage = "goodbye cruel user :(";
@@ -43,13 +52,13 @@ public class ChatbotAppController
 	{
 		String result = applicationView.showChatbotDialog(startMessage);
 		
-		while(!mySillyChatbot.quitChecker(result))
-		{
-			result = mySillyChatbot.processText(result);
-			result = applicationView.showChatbotDialog(result);
-		}
-		
-		quit();
+//		while(!mySillyChatbot.quitChecker(result))
+//		{
+//			result = mySillyChatbot.processText(result);
+//			result = applicationView.showChatbotDialog(result);
+//		}
+//		
+//		quit();
 	}
 	
 	/**
