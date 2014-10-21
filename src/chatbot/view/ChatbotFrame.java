@@ -4,9 +4,9 @@ import javax.swing.JFrame;
 
 import chatbot.controller.ChatbotAppController;
 /**
- * GUI frame class for chatbot, allows
+ * GUI frame class for chatbot, allows the window to be visible and usable
  * @author vgar7399
- *
+ * @version 1.0
  */
 public class ChatbotFrame extends JFrame
 {
@@ -17,6 +17,9 @@ public class ChatbotFrame extends JFrame
 		setupFrame();
 	}
 	
+	/**
+	 * we setup frame here
+	 */
 	private void setupFrame()
 	{
 		this.setContentPane(basePanel);
