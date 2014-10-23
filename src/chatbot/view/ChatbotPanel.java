@@ -16,6 +16,10 @@ import chatbot.controller.ChatbotAppController;
 public class ChatbotPanel extends JPanel
 {	
 	/**
+	 * This is the string spam, that contains tons of smiley faces.
+	 */
+	private String spam;
+	/**
 	 * This calls the ChatbotAppController baseController in declaration section
 	 */
 	private ChatbotAppController baseController;
@@ -33,7 +37,7 @@ public class ChatbotPanel extends JPanel
 	 */
 	private SpringLayout baseLayout;
 	/**
-	 * 
+	 * JTextArea with name of chatArea
 	 */
 	private JTextArea chatArea;
 	/**
@@ -42,7 +46,7 @@ public class ChatbotPanel extends JPanel
 	private JScrollPane chatPane;
 	
 	/**
-	 * This is the constructor for the chatbotpanel
+	 * This is the constructor for the chatbotpanel, we are declaring all of our variables and objects in this.
 	 * @param baseController from the ChatbotAppController
 	 */
 	public ChatbotPanel(ChatbotAppController baseController)
@@ -53,6 +57,7 @@ public class ChatbotPanel extends JPanel
 		baseLayout = new SpringLayout();
 		chatArea = new JTextArea(5,20);
 		chatPane = new JScrollPane(chatArea);
+		spam = new String(" :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) ");
 		
 		
 		setupPane();
@@ -61,6 +66,9 @@ public class ChatbotPanel extends JPanel
 		setupListeners();
 	}
 	
+	/**
+	 * We setup Pane containing the linewrap and wrapstyleword
+	 */
 	private void setupPane()
 	{
 		chatArea.setLineWrap(true);
@@ -100,7 +108,7 @@ public class ChatbotPanel extends JPanel
 		{
 			public void actionPerformed(ActionEvent click)
 			{
-				firstTextField.setText(firstTextField.getText()+ " :)");
+				firstTextField.setText(firstTextField.getText()+ spam);
 			}
 			
 		});
