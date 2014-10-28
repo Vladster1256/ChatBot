@@ -3,6 +3,7 @@ package chatbot.view;
 import javax.swing.JOptionPane;
 
 import chatbot.controller.ChatbotAppController;
+import chatbot.model.Chatbot;
 
 /**
  * This is where our chatbot will show up, all of the input is analized by the chatbot, chatbotAppController, and sent to here for GUI
@@ -15,6 +16,7 @@ public class ChatbotView
 	 * sets ChatbotAppController as the baseController
 	 */
 	private ChatbotAppController baseController;
+	private String result;
 	
 	/**
 	 * makes the basecontroller = to the basecontroller we need
@@ -23,8 +25,10 @@ public class ChatbotView
 	public ChatbotView(ChatbotAppController baseController)
 	{
 		this.baseController = baseController;
+		this.result = result;
 	}
 	
+
 	/**
 	 * Shows a String from the Chatbot wit the availability of user input.
 	 * @param currentInput The supplied String
@@ -47,4 +51,8 @@ public class ChatbotView
 		 JOptionPane.showMessageDialog(null, baseController.getMySillyChatbot().getName() + " says: " + currentInput); 
 	 }
 	
+	 public String getResult()
+	 {
+		 return result;
+	 }
 }

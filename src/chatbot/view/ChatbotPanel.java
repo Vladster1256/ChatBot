@@ -109,6 +109,7 @@ public class ChatbotPanel extends JPanel
 			public void actionPerformed(ActionEvent click)
 			{
 				firstTextField.setText(firstTextField.getText()+ spam);
+				chatArea.setText(.getText());
 			}
 			
 		});
