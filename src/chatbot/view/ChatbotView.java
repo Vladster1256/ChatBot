@@ -25,7 +25,7 @@ public class ChatbotView
 	public ChatbotView(ChatbotAppController baseController)
 	{
 		this.baseController = baseController;
-		this.result = result;
+		
 	}
 	
 
@@ -51,8 +51,4 @@ public class ChatbotView
 		 JOptionPane.showMessageDialog(null, baseController.getMySillyChatbot().getName() + " says: " + currentInput); 
 	 }
 	
-	 public String getResult()
-	 {
-		 return result;
-	 }
 }

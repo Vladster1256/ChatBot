@@ -55,8 +55,15 @@ public class ChatbotPanel extends JPanel
 		firstButton = new JButton("click the button... it is so clickly :D");
 		firstTextField = new JTextField(25);
 		baseLayout = new SpringLayout();
+		baseLayout.putConstraint(SpringLayout.SOUTH, firstTextField, -18, SpringLayout.NORTH, firstButton);
+		baseLayout.putConstraint(SpringLayout.SOUTH, firstButton, -10, SpringLayout.SOUTH, this);
+		baseLayout.putConstraint(SpringLayout.EAST, firstButton, 0, SpringLayout.EAST, firstTextField);
+		baseLayout.putConstraint(SpringLayout.WEST, firstTextField, 191, SpringLayout.WEST, this);
 		chatArea = new JTextArea(5,20);
 		chatPane = new JScrollPane(chatArea);
+		baseLayout.putConstraint(SpringLayout.NORTH, chatPane, 10, SpringLayout.NORTH, this);
+		baseLayout.putConstraint(SpringLayout.SOUTH, chatPane, 277, SpringLayout.NORTH, this);
+		baseLayout.putConstraint(SpringLayout.EAST, chatPane, 590, SpringLayout.WEST, this);
 		spam = new String(" :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) ");
 		
 		
@@ -94,11 +101,6 @@ public class ChatbotPanel extends JPanel
 	 */
 	private void setupLayout()
 	{
-		baseLayout.putConstraint(SpringLayout.SOUTH, firstTextField, -33, SpringLayout.NORTH, firstButton);
-		baseLayout.putConstraint(SpringLayout.WEST, firstButton, 0, SpringLayout.WEST, firstTextField);
-		baseLayout.putConstraint(SpringLayout.SOUTH, firstButton, -22, SpringLayout.SOUTH, this);
-		baseLayout.putConstraint(SpringLayout.WEST, firstTextField, 189, SpringLayout.WEST, this);
-		baseLayout.putConstraint(SpringLayout.NORTH, chatPane, 50, SpringLayout.NORTH, this);
 		baseLayout.putConstraint(SpringLayout.WEST, chatPane, 20, SpringLayout.WEST, this);
 	}
 	
@@ -108,10 +110,19 @@ public class ChatbotPanel extends JPanel
 		{
 			public void actionPerformed(ActionEvent click)
 			{
-				firstTextField.setText(firstTextField.getText()+ spam);
-				chatArea.setText(.getText());
+				String currentInput = firstTextField.getText();
+				String result = baseController.getChatbotDialog(currentInput);
+				showTextMessage("User Says:" + currentInput);
+				showTextMessage(baseController.getMySillyChatbot().getName() + " Says: " + result);
+				firstTextField.setText("");
 			}
 			
 		});
+	}
+	
+	public void showTextMessage(String userInput)
+	{
+		chatArea.append("\n" + userInput);
+		 
 	}
 }

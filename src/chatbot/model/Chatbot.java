@@ -11,6 +11,7 @@ import java.util.ArrayList;
 public class Chatbot
 {
 	private ArrayList<String> memeList;
+	
 
 	/**
 	 * Creates a ChatBot Object with the supplied name and initializes the
@@ -25,6 +26,11 @@ public class Chatbot
 	 * This is for the chatCount
 	 */
 	private int chatCount;
+	
+	/**
+	 * This initializes the ChatbotUser class to ask questions of the user
+	 */
+	private ChatbotUser myUser;
 
 	/**
 	 * This makes the Chatbot from this file equal with the chatbot app
@@ -39,6 +45,7 @@ public class Chatbot
 		this.name = name;
 		chatCount = 0;
 		fillTheMemeList();
+		myUser = new ChatbotUser();
 	}
 
 	/**
@@ -163,6 +170,24 @@ public class Chatbot
 	}
 
 	/**
+	 * 
+	 * @return
+	 */
+	public ChatbotUser getMyUser()
+	{
+		return myUser;
+	}
+
+	/**
+	 * 
+	 * @param myUser
+	 */
+	public void setMyUser(ChatbotUser myUser)
+	{
+		this.myUser = myUser;
+	}
+
+	/**
 	 * This sets the name for the chatbot
 	 * 
 	 * @param name
@@ -173,6 +198,7 @@ public class Chatbot
 		this.name = name;
 	}
 
+	
 	/**
 	 * These are memes that we put in the fillTheMemeList
 	 */
@@ -198,18 +224,29 @@ public class Chatbot
 	public String processText(String current)
 	{
 		String result = "";
-		if (current != null)
+		
+		if(getChatCount() < 7)
+		{
+			//prompt user for their person information
+			//you will need ifs or a switch
+			if (current !=null)
+			{
+				current = getUserName();
+				result
+			}
+		}
+	
+		if (current != null & getChatCount() >= 7)
 		{
 
-			int randomPosition = (int) (Math.random() * 3);
+			int randomPosition = (int) (Math.random() * 4);
 			if (current != null)
 			{
 				if (randomPosition == 0)
 				{
 					if (longTextChecker(current))
 					{
-						result = "Wow long what a long message to me, Thanks :| "
-								+ current;
+						result = "Wow long what a long message to me, Thanks :| " + current;
 					} 
 					else
 					{
@@ -240,7 +277,8 @@ public class Chatbot
 				} 
 				else
 				{
-					result += current;
+					//Talk about the user here :D
+					if ()
 				}
 			}
 		} 
@@ -248,7 +286,8 @@ public class Chatbot
 		{
 			result = "Did you try close me out? oh no you didn't!!!!!!!!!!!!";
 		}
+		updateChatCount();
 		return result;
 	}
-
+	
 }

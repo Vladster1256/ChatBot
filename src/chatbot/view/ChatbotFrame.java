@@ -27,4 +27,10 @@ public class ChatbotFrame extends JFrame
 		this.setResizable(false);
 		setVisible(true);
 	}
+
+	public ChatbotPanel showTextMessage()
+	{
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

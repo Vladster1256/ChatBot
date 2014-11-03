@@ -4,6 +4,7 @@ import javax.swing.JOptionPane;
 
 import chatbot.model.Chatbot;
 import chatbot.view.ChatbotFrame;
+import chatbot.view.ChatbotPanel;
 import chatbot.view.ChatbotView;
 
 /**
@@ -20,6 +21,8 @@ public class ChatbotAppController
 	private Chatbot mySillyChatbot;
 	private String startMessage;
 	private String quitMessage;
+	private String userName;
+	
 	/**
 	 * Reference to the GUI JFrame object for the application
 	 */
@@ -35,6 +38,7 @@ public class ChatbotAppController
 		mySillyChatbot = new Chatbot("Steve");
 		startMessage = "Welcome to TEH awesome " + mySillyChatbot.getName() +" chatbot. What is your name?";
 		quitMessage = "goodbye cruel user :(";
+		userName = "";
 	}
 	
 	/**
@@ -46,19 +50,31 @@ public class ChatbotAppController
 		return mySillyChatbot;
 	}
 	/**
-	 * This initialized the start 
+	 * This initialized the start, a loop
 	 */
 	public void start()
 	{
-		String result = applicationView.showChatbotDialog(startMessage);
+
+		((ChatbotPanel) appFrame.getContentPane()).showTextMessage(startMessage);
 		
-//		while(!mySillyChatbot.quitChecker(result))
-//		{
-//			result = mySillyChatbot.processText(result);
-//			result = applicationView.showChatbotDialog(result);
-//		}
-//		
-//		quit();
+//		ChatbotPanel textPanel = (ChatbotPanel) appFrame.getContentPane();
+//		textPannel.showTextMessage(startMessage);
+		
+	}
+	
+	public String getChatbotDialog(String input)
+	{
+		String result = "";
+		
+		if(mySillyChatbot.quitChecker(input))
+		{
+			quit();
+		}
+		
+		result = mySillyChatbot.processText(input);
+	
+		
+		return result;
 	}
 	
 	/**
