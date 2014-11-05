@@ -1,6 +1,7 @@
 package chatbot.model;
 
 import java.util.ArrayList;
+import chatbot.model.ChatbotUser;
 
 /**
  * The chatbot model class. Used for checking and manipulating Strings.
@@ -11,7 +12,6 @@ import java.util.ArrayList;
 public class Chatbot
 {
 	private ArrayList<String> memeList;
-	
 
 	/**
 	 * Creates a ChatBot Object with the supplied name and initializes the
@@ -26,7 +26,7 @@ public class Chatbot
 	 * This is for the chatCount
 	 */
 	private int chatCount;
-	
+
 	/**
 	 * This initializes the ChatbotUser class to ask questions of the user
 	 */
@@ -77,8 +77,7 @@ public class Chatbot
 		}
 		for (int loopCounter = 0; loopCounter < memeList.size(); loopCounter++)
 		{
-			if (input != null
-					&& input.equalsIgnoreCase(memeList.get(loopCounter)))
+			if (input != null && input.equalsIgnoreCase(memeList.get(loopCounter)))
 			{
 				isAMeme = true;
 			}
@@ -119,8 +118,7 @@ public class Chatbot
 		if (input != null && input.length() >= 50)
 		{
 			longTextChecker = true;
-		} 
-		else
+		} else
 		{
 			longTextChecker = false;
 		}
@@ -198,7 +196,6 @@ public class Chatbot
 		this.name = name;
 	}
 
-	
 	/**
 	 * These are memes that we put in the fillTheMemeList
 	 */
@@ -224,70 +221,80 @@ public class Chatbot
 	public String processText(String current)
 	{
 		String result = "";
-		
-		if(getChatCount() < 7)
-		{
-			//prompt user for their person information
-			//you will need ifs or a switch
-			if (current !=null)
-			{
-				current = getUserName();
-				result
-			}
-		}
-	
-		if (current != null & getChatCount() >= 7)
-		{
 
-			int randomPosition = (int) (Math.random() * 4);
+		if (getChatCount() < 7)
+		{
+			// prompt user for their person information
+			// you will need ifs or a switch
 			if (current != null)
 			{
-				if (randomPosition == 0)
+				if (getChatCount() == 1)
 				{
-					if (longTextChecker(current))
-					{
-						result = "Wow long what a long message to me, Thanks :| " + current;
-					} 
-					else
-					{
-						result = "Do you think you could make the phrase a little shorter?";
-					}
-				} 
-				else if (randomPosition == 1)
-				{
-					if (containingChecker(current))
-					{
-						result = "Did that phrase contain awesome?";
-					} 
-					else
-					{
-						result = "The last phrase did not contain awesome, you are not awesome anymore";
-					}
-				} 
-				else if (randomPosition == 2)
-				{
-					if (memeChecker(current))
-					{
-						result += "wow, " + current + " is a meme, wahoo!";
-					} 
-					else
-					{
-						result += "You didn't list a meme i like";
-					}
-				} 
-				else
-				{
-					//Talk about the user here :D
-					if ()
+				myUser.setUserName(current);
+				result = "Ok, your name is " + myUser.getUserName() + ". I will remember that, now how old are you " + myUser.getUserName();
 				}
+				else if(getChatCount() == 2)
+				{
+					
+					myUser.setAge(Integer.parseInt(current));
+					result = "Ok, " + myUser.getUserName() + " is " + myUser.getAge() + ". Do you haz sweg?";
+				}
+				else if(getChatCount() == 3)
+				{
+					
+				}
+				
 			}
-		} 
-		else
+			
+		} else
 		{
-			result = "Did you try close me out? oh no you didn't!!!!!!!!!!!!";
+			if (current != null & getChatCount() >= 7)
+			{
+
+				int randomPosition = (int) (Math.random() * 4);
+				if (current != null)
+				{
+					if (randomPosition == 0)
+					{
+						if (longTextChecker(current))
+						{
+							result = "Wow long what a long message to me, Thanks :| " + current;
+						} else
+						{
+							result = "Do you think you could make the phrase a little shorter?";
+						}
+					} else if (randomPosition == 1)
+					{
+						if (containingChecker(current))
+						{
+							result = "Did that phrase contain awesome?";
+						} else
+						{
+							result = "The last phrase did not contain awesome, you are not awesome anymore";
+						}
+					} else if (randomPosition == 2)
+					{
+						if (memeChecker(current))
+						{
+							result += "wow, " + current + " is a meme, wahoo!";
+						} else
+						{
+							result += "You didn't list a meme i like";
+						}
+					} else if (randomPosition == 3)
+					{
+						// Talk about the user here :D
+
+					}
+				}
+			} else
+			{
+				result = "Did you try close me out? oh no you didn't!!!!!!!!!!!!";
+			}
+			updateChatCount();
+			
 		}
-		updateChatCount();
 		return result;
 	}
-	
+
 }

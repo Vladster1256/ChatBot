@@ -2,6 +2,7 @@ package chatbot.model;
 
 public class ChatbotUser
 {
+	
 	private String userName;
 	private int age;
 	private boolean isMLG;
@@ -10,6 +11,7 @@ public class ChatbotUser
 	private double amountOfTriples;
 	private int amountOfNukesAchieved;
 	private int powerLevel;
+	
 	
 	public ChatbotUser()
 	{
@@ -38,7 +40,7 @@ public class ChatbotUser
 	{
 		this.age = age;
 	}
-	public boolean isMLG()
+	public boolean getIsMLG()
 	{
 		return isMLG;
 	}
