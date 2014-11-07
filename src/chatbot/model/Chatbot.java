@@ -241,7 +241,15 @@ public class Chatbot
 				}
 				else if(getChatCount() == 3)
 				{
-					
+					myUser.setHazSweg(Boolean.parseBoolean(current));
+					if(myUser.isHazSweg() == true)
+					{
+						result = "NO, only Spooderman can haz sweg, how much dank are you? (default dankness level is set at" + myUser.getAmountOfDankness() +  ")";
+					}
+					else
+					{
+						result = "Only Spooderman can haz sweg, good thing you knew that, how much dank are you? (default dankness level is set at" + myUser.getAmountOfDankness() +  ")";
+					}
 				}
 				
 			}
@@ -292,6 +300,7 @@ public class Chatbot
 				result = "Did you try close me out? oh no you didn't!!!!!!!!!!!!";
 			}
 			updateChatCount();
+			chatCount++;
 			
 		}
 		return result;

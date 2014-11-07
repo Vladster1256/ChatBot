@@ -19,7 +19,7 @@ public class ChatbotUser
 		this.age = -9999999;
 		this.isMLG = false;
 		this.hazSweg = false;
-		this.amountOfDankness = 0;
+		this.amountOfDankness = -999999999;
 		this.amountOfTriples = -0;
 		this.amountOfNukesAchieved = 1;
 		this.powerLevel = -9001;
