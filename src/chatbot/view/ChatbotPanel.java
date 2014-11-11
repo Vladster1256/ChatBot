@@ -7,6 +7,8 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 
 import chatbot.controller.ChatbotAppController;
+import chatbot.model.Chatbot;
+import chatbot.model.ChatbotUser;
 
 /**
  * This is the class for our GUI panel, that sticks in the frame
@@ -44,6 +46,8 @@ public class ChatbotPanel extends JPanel
 	 * JScroll Pane wih name of chatPane
 	 */
 	private JScrollPane chatPane;
+	private Chatbot myChatbot;
+	
 	
 	/**
 	 * This is the constructor for the chatbotpanel, we are declaring all of our variables and objects in this.
@@ -65,6 +69,7 @@ public class ChatbotPanel extends JPanel
 		baseLayout.putConstraint(SpringLayout.SOUTH, chatPane, 277, SpringLayout.NORTH, this);
 		baseLayout.putConstraint(SpringLayout.EAST, chatPane, 590, SpringLayout.WEST, this);
 		spam = new String(" :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) ");
+		myChatbot = new Chatbot();
 		
 		
 		setupPane();
@@ -115,6 +120,7 @@ public class ChatbotPanel extends JPanel
 				showTextMessage("User Says:" + currentInput);
 				showTextMessage(baseController.getMySillyChatbot().getName() + " Says: " + result);
 				firstTextField.setText("");
+				setChatCount(myChatbot);
 			}
 			
 		});
@@ -124,5 +130,14 @@ public class ChatbotPanel extends JPanel
 	{
 		chatArea.append("\n" + userInput);
 		 
+	}
+	public Chatbot getChatCount()
+	{
+		return chatCount;
+	}
+	
+	public void setChatCount (Chatbot myChatbot)
+	{
+		this.chatCount = chatCount;
 	}
 }

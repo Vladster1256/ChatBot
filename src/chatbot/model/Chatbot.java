@@ -166,6 +166,11 @@ public class Chatbot
 	{
 		return chatCount;
 	}
+	
+	public int setChatCount(int chatCount)
+	{
+		return this.chatCount = chatCount;
+	}
 
 	/**
 	 * 
@@ -228,7 +233,11 @@ public class Chatbot
 			// you will need ifs or a switch
 			if (current != null)
 			{
-				if (getChatCount() == 1)
+				if(getChatCount() == 0)
+				{
+					result = "not working yet";
+				}
+				else if (getChatCount() == 1)
 				{
 				myUser.setUserName(current);
 				result = "Ok, your name is " + myUser.getUserName() + ". I will remember that, now how old are you " + myUser.getUserName();
