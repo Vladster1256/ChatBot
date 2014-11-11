@@ -12,11 +12,12 @@ import chatbot.model.ChatbotUser;
 
 /**
  * This is the class for our GUI panel, that sticks in the frame
+ * 
  * @author vgar7399
  * @version 1.0
  */
 public class ChatbotPanel extends JPanel
-{	
+{
 	/**
 	 * This is the string spam, that contains tons of smiley faces.
 	 */
@@ -25,7 +26,7 @@ public class ChatbotPanel extends JPanel
 	 * This calls the ChatbotAppController baseController in declaration section
 	 */
 	private ChatbotAppController baseController;
-	
+
 	/**
 	 * Button with name of firstButton
 	 */
@@ -46,12 +47,14 @@ public class ChatbotPanel extends JPanel
 	 * JScroll Pane wih name of chatPane
 	 */
 	private JScrollPane chatPane;
-	private Chatbot myChatbot;
 	
-	
+
 	/**
-	 * This is the constructor for the chatbotpanel, we are declaring all of our variables and objects in this.
-	 * @param baseController from the ChatbotAppController
+	 * This is the constructor for the chatbotpanel, we are declaring all of our
+	 * variables and objects in this.
+	 * 
+	 * @param baseController
+	 *            from the ChatbotAppController
 	 */
 	public ChatbotPanel(ChatbotAppController baseController)
 	{
@@ -63,21 +66,20 @@ public class ChatbotPanel extends JPanel
 		baseLayout.putConstraint(SpringLayout.SOUTH, firstButton, -10, SpringLayout.SOUTH, this);
 		baseLayout.putConstraint(SpringLayout.EAST, firstButton, 0, SpringLayout.EAST, firstTextField);
 		baseLayout.putConstraint(SpringLayout.WEST, firstTextField, 191, SpringLayout.WEST, this);
-		chatArea = new JTextArea(5,20);
+		chatArea = new JTextArea(5, 20);
 		chatPane = new JScrollPane(chatArea);
 		baseLayout.putConstraint(SpringLayout.NORTH, chatPane, 10, SpringLayout.NORTH, this);
 		baseLayout.putConstraint(SpringLayout.SOUTH, chatPane, 277, SpringLayout.NORTH, this);
 		baseLayout.putConstraint(SpringLayout.EAST, chatPane, 590, SpringLayout.WEST, this);
 		spam = new String(" :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) ");
-		myChatbot = new Chatbot();
 		
-		
+
 		setupPane();
 		setupPanel();
 		setupLayout();
 		setupListeners();
 	}
-	
+
 	/**
 	 * We setup Pane containing the linewrap and wrapstyleword
 	 */
@@ -86,21 +88,21 @@ public class ChatbotPanel extends JPanel
 		chatArea.setLineWrap(true);
 		chatArea.setWrapStyleWord(true);
 	}
-	
+
 	/**
 	 * This is the panel parameters for the panel
 	 */
 	private void setupPanel()
 	{
 		this.setBackground(Color.magenta);
-		this.setSize(600,400);
+		this.setSize(600, 400);
 		this.setLayout(baseLayout);
 		this.add(firstButton);
 		this.add(firstTextField);
 		this.add(chatPane);
-		
+
 	}
-	
+
 	/**
 	 * This is the layout for the content on the panel
 	 */
@@ -108,7 +110,7 @@ public class ChatbotPanel extends JPanel
 	{
 		baseLayout.putConstraint(SpringLayout.WEST, chatPane, 20, SpringLayout.WEST, this);
 	}
-	
+
 	private void setupListeners()
 	{
 		firstButton.addActionListener(new ActionListener()
@@ -120,24 +122,17 @@ public class ChatbotPanel extends JPanel
 				showTextMessage("User Says:" + currentInput);
 				showTextMessage(baseController.getMySillyChatbot().getName() + " Says: " + result);
 				firstTextField.setText("");
-				setChatCount(myChatbot);
+				
 			}
-			
+
 		});
 	}
-	
+
 	public void showTextMessage(String userInput)
 	{
 		chatArea.append("\n" + userInput);
-		 
+
 	}
-	public Chatbot getChatCount()
-	{
-		return chatCount;
-	}
+
 	
-	public void setChatCount (Chatbot myChatbot)
-	{
-		this.chatCount = chatCount;
-	}
 }

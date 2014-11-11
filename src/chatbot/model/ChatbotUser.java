@@ -64,5 +64,28 @@ public class ChatbotUser
 	{
 		this.amountOfDankness = amountOfDankness;
 	}
-	
+	public double getAmountOfTriples()
+	{
+		return amountOfTriples;
+	}
+	public void setAmountOfTriples(double amountOfTriples)
+	{
+		this.amountOfTriples = amountOfTriples;
+	}
+	public int getAmountOfNukesAchieved()
+	{
+		return amountOfNukesAchieved;
+	}
+	public void setAmountOfNukesAchieved(int amountOfNukesAchieved)
+	{
+		this.amountOfNukesAchieved = amountOfNukesAchieved;
+	}
+	public int getPowerLevel()
+	{
+		return powerLevel;
+	}
+	public void setPowerLevel(int powerLevel)
+	{
+		this.powerLevel = powerLevel;
+	}
 }

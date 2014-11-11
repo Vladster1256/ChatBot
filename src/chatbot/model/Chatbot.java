@@ -7,10 +7,15 @@ import chatbot.model.ChatbotUser;
  * The chatbot model class. Used for checking and manipulating Strings.
  * 
  * @author Vladster1256
- * @version 1.1 9/26/14
+ * @version 1.4 9/26/14
  */
 public class Chatbot
 {
+	/**
+	 * the list of user input for the chatbot
+	 */
+	private ArrayList<String> userInputList;
+
 	private ArrayList<String> memeList;
 
 	/**
@@ -41,6 +46,7 @@ public class Chatbot
 	 */
 	public Chatbot(String name)
 	{
+		userInputList = new ArrayList<String>();
 		memeList = new ArrayList<String>();
 		this.name = name;
 		chatCount = 0;
@@ -166,7 +172,7 @@ public class Chatbot
 	{
 		return chatCount;
 	}
-	
+
 	public int setChatCount(int chatCount)
 	{
 		return this.chatCount = chatCount;
@@ -233,42 +239,70 @@ public class Chatbot
 			// you will need ifs or a switch
 			if (current != null)
 			{
-				if(getChatCount() == 0)
+				if (getChatCount() == 0)
 				{
-					result = "not working yet";
-				}
-				else if (getChatCount() == 1)
+					result = "Chatbot is still initializing, please repeat your last answer again";
+				} else if (getChatCount() == 1)
+
 				{
-				myUser.setUserName(current);
-				result = "Ok, your name is " + myUser.getUserName() + ". I will remember that, now how old are you " + myUser.getUserName();
-				}
-				else if(getChatCount() == 2)
+					myUser.setUserName(current);
+					result = "JK, i was messing me with you. I got that your name is " + myUser.getUserName() + ". I will remember that, now how old are you " + myUser.getUserName();
+				} else if (getChatCount() == 2)
 				{
-					
-					myUser.setAge(Integer.parseInt(current));
-					result = "Ok, " + myUser.getUserName() + " is " + myUser.getAge() + ". Do you haz sweg?";
-				}
-				else if(getChatCount() == 3)
-				{
-					myUser.setHazSweg(Boolean.parseBoolean(current));
-					if(myUser.isHazSweg() == true)
+					if(checkParseInteger(current.myUser.getAge()))
 					{
-						result = "NO, only Spooderman can haz sweg, how much dank are you? (default dankness level is set at" + myUser.getAmountOfDankness() +  ")";
+						
 					}
-					else
+					if (Integer.parseInt(current) > 122)
 					{
-						result = "Only Spooderman can haz sweg, good thing you knew that, how much dank are you? (default dankness level is set at" + myUser.getAmountOfDankness() +  ")";
+						myUser.setAge(Integer.parseInt(current));
+						result = "Ok, " + myUser.getUserName() + ", are you the oldest living being in the world? Now, do you haz sweg?";
+					} else
+					{
+						myUser.setAge(Integer.parseInt(current));
+						result = "Ok, " + myUser.getUserName() + " is " + myUser.getAge() + ". Do you haz sweg?";
 					}
+					}
+				} else if (getChatCount() == 3)
+				{
+
+					if (current.equalsIgnoreCase("yes"))
+					{
+						result = "NO, only Spooderman can haz sweg, how much dank are you? (default dankness level is set at" + myUser.getAmountOfDankness() + ")";
+						myUser.setHazSweg(true);
+					} else if (current.equalsIgnoreCase("yep"))
+					{
+						result = "NO, only Spooderman can haz sweg, how much dank are you? (default dankness level is set at" + myUser.getAmountOfDankness() + ")";
+						myUser.setHazSweg(true);
+					} else
+					{
+						result = "Only Spooderman can haz sweg, good thing you knew that, how much dank are you? (default dankness level is set at" + myUser.getAmountOfDankness() + ")";
+						myUser.setHazSweg(false);
+					}
+				} else if (getChatCount() == 4)
+				{
+					if (Long.parseLong(current) > 2147483647)
+					{
+						result = myUser.getUserName() + "The dankness level you have entered is larger than 2147483648, your dankness level is " + myUser.getAmountOfDankness();
+					} else
+					{
+						myUser.setAmountOfDankness(Integer.parseInt(current));
+						result = myUser.getUserName() + " now has a dank level of " + myUser.getAmountOfDankness() + ". That is pretty dank. How many triples did you achieve throughout your life? (enter a decimal value)";
+					}
+				} else if (getChatCount() == 5)
+				{
+					myUser.setAmountOfTriples(Double.parseDouble(current));
+					result = "asdf";
 				}
-				
+				updateChatCount();
 			}
-			
+
 		} else
 		{
 			if (current != null & getChatCount() >= 7)
 			{
 
-				int randomPosition = (int) (Math.random() * 4);
+				int randomPosition = (int) (Math.random() * 6);
 				if (current != null)
 				{
 					if (randomPosition == 0)
@@ -302,6 +336,21 @@ public class Chatbot
 					{
 						// Talk about the user here :D
 
+					} 
+					else if (randomPosition == 4)
+					{
+						userInputList.add(current);
+						result = "Thank you for the comment";
+					}
+					else
+					{
+						if (userInputChecker(current))
+						{
+
+						} else
+						{
+
+						}
 					}
 				}
 			} else
@@ -309,10 +358,27 @@ public class Chatbot
 				result = "Did you try close me out? oh no you didn't!!!!!!!!!!!!";
 			}
 			updateChatCount();
-			chatCount++;
-			
+
 		}
 		return result;
 	}
 
+	private boolean userInputChecker(String userInput)
+	{
+		boolean matchesInput = false;
+
+		for (int loopCount = 0; loopCount < userInputList.size(); loopCount++)
+		{
+			if (userInput.equalsIgnoreCase(userInputList.get(loopCount)))
+			{
+				matchesInput = true;
+				userInputList.remove(loopCount);
+				loopCount--;
+			} else
+			{
+
+			}
+		}
+		return matchesInput;
+	}
 }
