@@ -111,6 +111,9 @@ public class ChatbotPanel extends JPanel
 		baseLayout.putConstraint(SpringLayout.WEST, chatPane, 20, SpringLayout.WEST, this);
 	}
 
+	/**
+	 * We set up listener for first button
+	 */
 	private void setupListeners()
 	{
 		firstButton.addActionListener(new ActionListener()
@@ -128,6 +131,10 @@ public class ChatbotPanel extends JPanel
 		});
 	}
 
+	/**
+	 * Sends user input on a new line in the chat dialog
+	 * @param userInput is the input from user
+	 */
 	public void showTextMessage(String userInput)
 	{
 		chatArea.append("\n" + userInput);

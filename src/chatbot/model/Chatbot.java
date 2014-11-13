@@ -249,10 +249,7 @@ public class Chatbot
 					result = "JK, i was messing me with you. I got that your name is " + myUser.getUserName() + ". I will remember that, now how old are you " + myUser.getUserName();
 				} else if (getChatCount() == 2)
 				{
-					if(checkParseInteger(current.myUser.getAge()))
-					{
-						
-					}
+					
 					if (Integer.parseInt(current) > 122)
 					{
 						myUser.setAge(Integer.parseInt(current));
@@ -297,7 +294,8 @@ public class Chatbot
 				updateChatCount();
 			}
 
-		} else
+		} 
+	else
 		{
 			if (current != null & getChatCount() >= 7)
 			{
