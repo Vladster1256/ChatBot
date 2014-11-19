@@ -87,6 +87,7 @@ public class ChatbotPanel extends JPanel
 	{
 		chatArea.setLineWrap(true);
 		chatArea.setWrapStyleWord(true);
+		chatArea.setEditable(false);
 	}
 
 	/**
@@ -125,6 +126,7 @@ public class ChatbotPanel extends JPanel
 				showTextMessage("User Says:" + currentInput);
 				showTextMessage(baseController.getMySillyChatbot().getName() + " Says: " + result);
 				firstTextField.setText("");
+				firstTextField.requestFocus(true);
 				
 			}
 

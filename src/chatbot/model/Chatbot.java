@@ -1,6 +1,7 @@
 package chatbot.model;
 
 import java.util.ArrayList;
+
 import chatbot.model.ChatbotUser;
 
 /**
@@ -220,7 +221,47 @@ public class Chatbot
 		memeList.add("success");
 		memeList.add("challenge accepted");
 	}
-
+	
+	private String personalQuestions(String current)
+	{
+		String result = "";
+		int randomPosition1 = (int) (Math.random() * 1);
+		if (randomPosition1 == 0)
+		{
+			result = myUser.getUserName() + ", do you like doritos?";
+			
+			if (current.equalsIgnoreCase("yes") || current.equalsIgnoreCase("yep"))
+			{
+				ifLikesDoritos(current);
+			} else
+			{
+				ifHatesDoritos(current);
+			}
+		}
+		else if (randomPosition1 == 1 && myUser.getAmountOfDankness() < 420)
+		{
+			
+		}
+			
+		
+		return result;
+	}
+	private String ifLikesDoritos(String current)
+	{
+		String result = "";
+		myUser.setLikesDoritos(true);
+		result += "You have MLG Dankness, illuminati confirms this message";
+		return result;
+		
+	}
+	private String ifHatesDoritos(String current)
+	{
+		String result = "";
+		myUser.setLikesDoritos(false);
+		result += "You stink, illuminati will 360 noskope you. Get Ready to get REKT";
+		return result;
+	}
+	
 	/**
 	 * Processes input from the user against the checker methods. Returns the
 	 * next output for the view
@@ -229,11 +270,12 @@ public class Chatbot
 	 *            The supplied text.
 	 * @return The processed text based on checker or other methods.
 	 */
+
 	public String processText(String current)
 	{
 		String result = "";
 
-		if (getChatCount() < 7)
+		if (getChatCount() < 8 && current != null)
 		{
 			// prompt user for their person information
 			// you will need ifs or a switch
@@ -241,15 +283,21 @@ public class Chatbot
 			{
 				if (getChatCount() == 0)
 				{
-					result = "Chatbot is still initializing, please repeat your last answer again";
+					if (current.equalsIgnoreCase("Skip"))
+					{
+						chatCount = 8;
+					} else
+					{
+						result = "Chatbot is still initializing, please repeat your last answer again";
+					}
 				} else if (getChatCount() == 1)
 
 				{
 					myUser.setUserName(current);
-					result = "JK, i was messing me with you. I got that your name is " + myUser.getUserName() + ". I will remember that, now how old are you " + myUser.getUserName();
+					result = "JK, i was messing with you. I got that your name is " + myUser.getUserName() + ". I will remember that, now how old are you " + myUser.getUserName() + "?";
 				} else if (getChatCount() == 2)
 				{
-					
+
 					if (Integer.parseInt(current) > 122)
 					{
 						myUser.setAge(Integer.parseInt(current));
@@ -259,15 +307,9 @@ public class Chatbot
 						myUser.setAge(Integer.parseInt(current));
 						result = "Ok, " + myUser.getUserName() + " is " + myUser.getAge() + ". Do you haz sweg?";
 					}
-					}
 				} else if (getChatCount() == 3)
 				{
-
-					if (current.equalsIgnoreCase("yes"))
-					{
-						result = "NO, only Spooderman can haz sweg, how much dank are you? (default dankness level is set at" + myUser.getAmountOfDankness() + ")";
-						myUser.setHazSweg(true);
-					} else if (current.equalsIgnoreCase("yep"))
+					if (current.equalsIgnoreCase("yes") || current.equalsIgnoreCase("yep"))
 					{
 						result = "NO, only Spooderman can haz sweg, how much dank are you? (default dankness level is set at" + myUser.getAmountOfDankness() + ")";
 						myUser.setHazSweg(true);
@@ -280,7 +322,7 @@ public class Chatbot
 				{
 					if (Long.parseLong(current) > 2147483647)
 					{
-						result = myUser.getUserName() + "The dankness level you have entered is larger than 2147483648, your dankness level is " + myUser.getAmountOfDankness();
+						result = myUser.getUserName() + " The dankness level you have entered is larger than 2147483647, your dankness level is " + myUser.getAmountOfDankness() + ". How many triples did you achieve throughout your life? (enter a decimal value)";
 					} else
 					{
 						myUser.setAmountOfDankness(Integer.parseInt(current));
@@ -289,18 +331,30 @@ public class Chatbot
 				} else if (getChatCount() == 5)
 				{
 					myUser.setAmountOfTriples(Double.parseDouble(current));
-					result = "asdf";
+					result = myUser.getUserName() + " only got " + myUser.getAmountOfTriples() + " triples. That is pretty dank. How many nukes did you get throught your life? ";
+				} else if (getChatCount() == 6)
+				{
+					myUser.setAmountOfNukesAchieved(Integer.parseInt(current));
+					result = myUser.getUserName() + " has gotten " + myUser.getAmountOfNukesAchieved() + ". That is pretty dank. What is your power level " + myUser.getUserName();
+				} else if (getChatCount() == 7)
+				{
+					myUser.setPowerLevel(Integer.parseInt(current));
+					if (myUser.getPowerLevel() > 9000)
+					{
+						result = "ITS OVER 9000!!!!!";
+					} else
+					{
+						result = "you are too lame as your power level isn't over 9000";
+					}
 				}
 				updateChatCount();
 			}
 
-		} 
-	else
+		} else
 		{
-			if (current != null & getChatCount() >= 7)
+			if (current != null & getChatCount() >= 8)
 			{
-
-				int randomPosition = (int) (Math.random() * 6);
+				int randomPosition = (int) (Math.random() * 5);
 				if (current != null)
 				{
 					if (randomPosition == 0)
@@ -332,33 +386,33 @@ public class Chatbot
 						}
 					} else if (randomPosition == 3)
 					{
-						// Talk about the user here :D
+						personalQuestions(current);
 
-					} 
-					else if (randomPosition == 4)
+					} else if (randomPosition == 4)
 					{
 						userInputList.add(current);
 						result = "Thank you for the comment";
-					}
-					else
+					} else
 					{
 						if (userInputChecker(current))
 						{
-
+							
 						} else
 						{
 
 						}
 					}
 				}
+
 			} else
 			{
 				result = "Did you try close me out? oh no you didn't!!!!!!!!!!!!";
+				chatCount--;
 			}
 			updateChatCount();
-
 		}
 		return result;
+
 	}
 
 	private boolean userInputChecker(String userInput)
