@@ -9,7 +9,7 @@ import chatbot.model.ChatbotUser;
  * The chatbot model class. Used for checking and manipulating Strings.
  * 
  * @author Vladster1256
- * @version 1.4 9/26/14
+ * @version 2.0 9/26/14
  */
 public class Chatbot
 {
@@ -126,8 +126,7 @@ public class Chatbot
 		if (input != null && input.length() >= 50)
 		{
 			longTextChecker = true;
-		}
-		else
+		} else
 		{
 			longTextChecker = false;
 		}
@@ -148,8 +147,7 @@ public class Chatbot
 		if (input != null && input.contains("awesome"))
 		{
 			containingChecker = true;
-		}
-		else
+		} else
 		{
 			containingChecker = false;
 		}
@@ -224,42 +222,22 @@ public class Chatbot
 		memeList.add("success");
 		memeList.add("challenge accepted");
 	}
-
-	private String personalQuestions(String current)
+ 
+	/**
+	 * Checker for keyboard mashing
+	 * @param userInput The user text
+	 * @return isMashing
+	 */
+	private boolean mashChecker(String userInput)
 	{
-		String result = "";
-		int randomPosition1 = (int) (Math.random() * 1);
-		if (randomPosition1 == 0)
+		boolean isMashing = false;
+		if(userInput.indexOf("asdf")> -1)
 		{
-			result = myUser.getUserName() + ", do you like doritos?";
-
-			if (current.equalsIgnoreCase("yes") || current.equalsIgnoreCase("yep"))
-			{
-				myUser.setLikesDoritos(true);
-				result += "You have MLG Dankness, illuminati confirms this message";
-				return result;
-			}
-			else
-			{
-				ifHatesDoritos(current);
-			}
+			isMashing = true;
 		}
-		else if (randomPosition1 == 1 && myUser.getAmountOfDankness() < 420)
-		{
-
-		}
-		return result;
+		return isMashing;
 	}
-
-
-	private String ifHatesDoritos(String current)
-	{
-		String result = "";
-		myUser.setLikesDoritos(false);
-		result += "You stink, illuminati will 360 noskope you. Get Ready to get REKT";
-		return result;
-	}
-
+	
 	/**
 	 * Processes input from the user against the checker methods. Returns the
 	 * next output for the view
@@ -272,7 +250,13 @@ public class Chatbot
 	{
 		String result = "";
 
-		if (getChatCount() < 8 && current != null)
+		if(current.equalsIgnoreCase("help") & chatCount > 0)
+		{
+			result = "help: help menu. \n quit: quit the app. \n Favorite MEMES: kitties, one does not simply, doge, why u no, what if, success, challenge accepted";
+		}
+		else
+		{
+		if (getChatCount() < 10 && current != null)
 		{
 			// prompt user for their person information
 			// you will need ifs or a switch
@@ -284,89 +268,102 @@ public class Chatbot
 					{
 						chatCount = 8;
 						result = "You have skipped the intro questions, chatbot doesn't know anything about you, you should start chatbot over again to have chatbot know you better";
-					}
-					else
+					} else
 					{
-						result = "Chatbot is still initializing, please repeat your last answer again";
+						result = "Chatbot is still initializing, please repeat your last answer again. Say HELP at anytime for help";
 					}
-				}
-				else if (getChatCount() == 1)
+				} else if (getChatCount() == 1)
 
 				{
 					myUser.setUserName(current);
 					result = "JK, i was messing with you. I got that your name is " + myUser.getUserName() + ". I will remember that, now how old are you " + myUser.getUserName() + "?";
-				}
-				else if (getChatCount() == 2)
+				} else if (getChatCount() == 2)
 				{
 
 					if (Integer.parseInt(current) > 122)
 					{
 						myUser.setAge(Integer.parseInt(current));
 						result = "Ok, " + myUser.getUserName() + ", are you the oldest living being in the world? Now, do you haz sweg?";
-					}
-					else
+					} else
 					{
 						myUser.setAge(Integer.parseInt(current));
 						result = "Ok, " + myUser.getUserName() + " is " + myUser.getAge() + ". Do you haz sweg?";
 					}
-				}
-				else if (getChatCount() == 3)
+				} else if (getChatCount() == 3)
 				{
 					if (current.equalsIgnoreCase("yes") || current.equalsIgnoreCase("yep"))
 					{
 						result = "NO, only Spooderman can haz sweg, how much dank are you? (default dankness level is set at" + myUser.getAmountOfDankness() + ")";
 						myUser.setHazSweg(true);
-					}
-					else
+					} else
 					{
 						result = "Only Spooderman can haz sweg, good thing you knew that, how much dank are you? (default dankness level is set at" + myUser.getAmountOfDankness() + ")";
 						myUser.setHazSweg(false);
 					}
-				}
-				else if (getChatCount() == 4)
+				} else if (getChatCount() == 4)
 				{
 					if (Long.parseLong(current) > 2147483647)
 					{
 						result = myUser.getUserName() + " The dankness level you have entered is larger than 2147483647, your dankness level is " + myUser.getAmountOfDankness() + ". How many triples did you achieve throughout your life? (enter a decimal value)";
-					}
-					else
+					} else
 					{
 						myUser.setAmountOfDankness(Integer.parseInt(current));
 						result = myUser.getUserName() + " now has a dank level of " + myUser.getAmountOfDankness() + ". That is pretty dank. How many triples did you achieve throughout your life? (enter a decimal value)";
 					}
-				}
-				else if (getChatCount() == 5)
+				} else if (getChatCount() == 5)
 				{
 					myUser.setAmountOfTriples(Double.parseDouble(current));
 					result = myUser.getUserName() + " only got " + myUser.getAmountOfTriples() + " triples. That is pretty dank. How many nukes did you get throught your life? ";
-				}
-				else if (getChatCount() == 6)
+				} else if (getChatCount() == 6)
 				{
 					myUser.setAmountOfNukesAchieved(Integer.parseInt(current));
 					result = myUser.getUserName() + " has gotten " + myUser.getAmountOfNukesAchieved() + ". That is pretty dank. What is your power level " + myUser.getUserName();
-				}
-				else if (getChatCount() == 7)
+				} else if (getChatCount() == 7)
 				{
 					myUser.setPowerLevel(Integer.parseInt(current));
 					if (myUser.getPowerLevel() > 9000)
 					{
 						result = "ITS OVER 9000!!!!!";
-					}
-					else
+					} else
 					{
-						result = "you are too lame as your power level isn't over 9000";
+						result = "you are too lame as your power level isn't over 9000. Do you like Doritos?";
+					}
+				}
+				else if(getChatCount() == 8)
+				{
+					if (current.equalsIgnoreCase("yes") || current.equalsIgnoreCase("yep") )
+					{
+						myUser.setLikesDoritos(true);
+						result = "You have MLG Dankness, illuminati confirms this message. Do you like DEW?";
+					} else 
+					{
+						myUser.setLikesDoritos(false);
+						result = "You stink, illuminati will 360 noskope you. Get Ready to get REKT. Do you like DEW?";
+					}
+				}
+				else if(getChatCount() == 9)
+				{
+					result = myUser.getUserName() + ", do you like DEW?";
+
+					if (current.equalsIgnoreCase("yes") || current.equalsIgnoreCase("yep") )
+					{
+						myUser.setLikesDEW(true);
+						result = "You have MLG Dankness, illuminati confirms this message";
+					} else 
+					{
+						myUser.setLikesDEW(false);
+						result = "You stink, illuminati will 360 noskope you. Get Ready to get REKT";
 					}
 				}
 				updateChatCount();
 			}
 			return result;
-			
-		}
-		else
+
+		} else
 		{
-			if (current != null & getChatCount() >= 8)
+			if (current != null & getChatCount() >= 10)
 			{
-				int randomPosition = (int) (Math.random() * 5);
+				int randomPosition = (int) (Math.random() * 6);
 				if (current != null)
 				{
 					if (randomPosition == 0)
@@ -374,67 +371,100 @@ public class Chatbot
 						if (longTextChecker(current))
 						{
 							result = "Wow long what a long message to me, Thanks :| " + current;
-						}
-						else
+						} else
 						{
 							result = "Do you think you could make the phrase a little shorter?";
 						}
-					}
-					else if (randomPosition == 1)
+					} else if (randomPosition == 1)
 					{
 						if (containingChecker(current))
 						{
 							result = "Did that phrase contain awesome?";
-						}
-						else
+						} else
 						{
 							result = "The last phrase did not contain awesome, you are not awesome anymore";
 						}
-					}
-					else if (randomPosition == 2)
+					} else if (randomPosition == 2)
 					{
 						if (memeChecker(current))
 						{
 							result += "wow, " + current + " is a meme, wahoo!";
-						}
-						else
+						} else
 						{
 							result += "You didn't list a meme i like";
 						}
-					}
-					else if (randomPosition == 3)
-					{
-						personalQuestions(current);
-
-					}
-					else if (randomPosition == 4)
+					} else if (randomPosition == 3)
 					{
 						userInputList.add(current);
 						result = "Thank you for the comment";
+					} else if (randomPosition == 4)
+					{
+						if(mashChecker(current))
+						{
+							result = mashingDetected(current);
+						}
+						else
+						{
+							result = noMashingDetected(current);
+						}
 					}
 					else
 					{
 						if (userInputChecker(current))
 						{
-							//result = "Here is what " + myUser.getUserName()+ " has said before: " + ArrayList<userInputList[new Random().nextInt(userInputList.length)]>;
-						}
-						else
+						    //result = "Here is what " + myUser.getUserName()+" has said before: " + ArrayList<userInputList[new Random().nextInt(userInputList)]>;
+							result = "I got something previous";
+						} else
 						{
-
+							result = "I didn't quite add anything to my list of things you wrote to me yet";
 						}
 					}
 				}
 				return result;
-			}
-			else
+			} else
 			{
 				result = "Did you try close me out? oh no you didn't!!!!!!!!!!!!";
 				chatCount--;
 			}
 			updateChatCount();
 		}
-		return result;
 		
+
+	}
+		return result;
+	}
+	
+	private String mashingDetected(String input)
+	{
+		String mashed = "";
+		
+		mashed = input.substring(input.length()/2);
+		mashed += input.substring(input.length()/2);
+		mashed += input.substring(input.length()/2);
+		mashed += input.substring(input.length()/2);
+		mashed += input.substring(input.length()/2);
+		mashed += input.substring(input.length()/2);
+		mashed += input.substring(input.length()/2);
+		mashed += input.substring(input.length()/2);
+		mashed += input.substring(input.length()/2);
+		mashed += input.substring(input.length()/2);
+		mashed += input.substring(input.length()/2);
+		mashed += input.substring(input.length()/2);
+		
+		return mashed;
+	}
+	
+	private String noMashingDetected(String input)
+	{
+		String noMashing = "Thank you for not mashing your keyboard with: ";
+		if(input.length() > 1)
+		{
+			noMashing += input.substring(input.length()/3, input.length()/2);
+		}
+		
+		
+		
+		return noMashing;
 	}
 
 	private boolean userInputChecker(String userInput)
@@ -448,12 +478,12 @@ public class Chatbot
 				matchesInput = true;
 				userInputList.remove(loopCount);
 				loopCount--;
-			}
-			else
+			} else
 			{
 
 			}
 		}
 		return matchesInput;
 	}
+
 }
