@@ -175,11 +175,6 @@ public class Chatbot
 		return chatCount;
 	}
 
-	public int setChatCount(int chatCount)
-	{
-		return this.chatCount = chatCount;
-	}
-
 	/**
 	 * 
 	 * @return

@@ -62,6 +62,11 @@ public class ChatbotAppController
 		
 	}
 	
+	/**
+	 * this is the getter for chatbot dialog, which checks for the word "quit"
+	 * @param input is user input
+	 * @return result
+	 */
 	public String getChatbotDialog(String input)
 	{
 		String result = "";
