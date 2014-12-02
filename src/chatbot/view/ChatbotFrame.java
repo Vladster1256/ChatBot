@@ -28,6 +28,10 @@ public class ChatbotFrame extends JFrame
 		setVisible(true);
 	}
 
+	/**
+	 * This is our frame for the panel and this is what we use to show Text Message	 
+	 * @return null
+	 */
 	public ChatbotPanel showTextMessage()
 	{
 		// TODO Auto-generated method stub

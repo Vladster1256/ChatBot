@@ -1,5 +1,10 @@
 package chatbot.model;
 
+/**
+ * This is The ChatbotUser class which allows us to store data about the User
+ * @author Vladster1256
+ * @version 1.5
+ */
 public class ChatbotUser
 {
 	
@@ -14,7 +19,9 @@ public class ChatbotUser
 	private boolean likesDoritos;
 	private boolean likesDEW;
 	
-	
+	/**
+	 * This is our constructo that constructs and initializes values for all of the declared variables, strings, doubles, and booleans
+	 */
 	public ChatbotUser()
 	{
 		this.userName = "";

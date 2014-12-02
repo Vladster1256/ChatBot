@@ -59,7 +59,7 @@ public class ChatbotPanel extends JPanel
 	public ChatbotPanel(ChatbotAppController baseController)
 	{
 		this.baseController = baseController;
-		firstButton = new JButton("click the button... it is so clickly :D");
+		firstButton = new JButton("Click Here to Send Message");
 		firstTextField = new JTextField(25);
 		baseLayout = new SpringLayout();
 		baseLayout.putConstraint(SpringLayout.SOUTH, firstTextField, -18, SpringLayout.NORTH, firstButton);
@@ -95,7 +95,7 @@ public class ChatbotPanel extends JPanel
 	 */
 	private void setupPanel()
 	{
-		this.setBackground(Color.magenta);
+		this.setBackground(Color.blue);
 		this.setSize(600, 400);
 		this.setLayout(baseLayout);
 		this.add(firstButton);

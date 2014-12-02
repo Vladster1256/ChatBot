@@ -429,6 +429,11 @@ public class Chatbot
 		return result;
 	}
 	
+	/**
+	 * This is the mashing detected method that returns a result when chatbot detects mashing
+	 * @param input is user input
+	 * @return mashed
+	 */
 	private String mashingDetected(String input)
 	{
 		String mashed = "";
@@ -449,6 +454,11 @@ public class Chatbot
 		return mashed;
 	}
 	
+	/**
+	 * This is the no mashing detected method
+	 * @param input is user input
+	 * @return noMashing
+	 */
 	private String noMashingDetected(String input)
 	{
 		String noMashing = "Thank you for not mashing your keyboard with: ";
@@ -462,6 +472,11 @@ public class Chatbot
 		return noMashing;
 	}
 
+	/**
+	 * This is user input checker which allows us to to add things to a list
+	 * @param userInput is input
+	 * @return matchesInput
+	 */
 	private boolean userInputChecker(String userInput)
 	{
 		boolean matchesInput = false;
