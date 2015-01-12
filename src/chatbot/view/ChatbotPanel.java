@@ -47,6 +47,8 @@ public class ChatbotPanel extends JPanel
 	 * JScroll Pane wih name of chatPane
 	 */
 	private JScrollPane chatPane;
+	private JButton loadChat;
+	
 	
 
 	/**
@@ -101,6 +103,17 @@ public class ChatbotPanel extends JPanel
 		this.add(firstButton);
 		this.add(firstTextField);
 		this.add(chatPane);
+		
+		
+		JButton saveChat = new JButton("Save Chat");
+		baseLayout.putConstraint(SpringLayout.NORTH, saveChat, 0, SpringLayout.NORTH, firstTextField);
+		baseLayout.putConstraint(SpringLayout.WEST, saveChat, 44, SpringLayout.WEST, this);
+		add(saveChat);
+		
+		loadChat = new JButton("Load Chat");
+		baseLayout.putConstraint(SpringLayout.SOUTH, loadChat, 0, SpringLayout.SOUTH, firstButton);
+		baseLayout.putConstraint(SpringLayout.EAST, loadChat, 0, SpringLayout.EAST, saveChat);
+		add(loadChat);
 
 	}
 
@@ -131,6 +144,40 @@ public class ChatbotPanel extends JPanel
 			}
 
 		});
+		
+		loadButton.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent click)
+			{
+				String savedChat = baseController.readTextFromFile();
+				if(savedChat.length()<1)
+				{
+					chatArea.setText("no text in file");
+				}
+				else
+				{
+					chatArea.saveText(chatArea,true);
+				}
+			}
+				
+		});
+		
+		saveChat.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent click)
+			{
+				String savedChat = baseController.writeTextToFile();
+				if(chatArea.length()<1)
+				{
+					chatArea.setText("no text in chat area :()");
+				}
+				else
+				{
+					
+				}
+			}
+		});
+		
 	}
 
 	/**
@@ -142,6 +189,4 @@ public class ChatbotPanel extends JPanel
 		chatArea.append("\n" + userInput);
 
 	}
-
-	
 }
