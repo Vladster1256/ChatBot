@@ -87,6 +87,7 @@ public class ChatbotPanel extends JPanel
 	 */
 	private void setupPane()
 	{
+		chatArea.setAutoscrolls(true);
 		chatArea.setLineWrap(true);
 		chatArea.setWrapStyleWord(true);
 		chatArea.setEditable(false);
@@ -145,39 +146,39 @@ public class ChatbotPanel extends JPanel
 
 		});
 		
-		loadButton.addActionListener(new ActionListener()
-		{
-			public void actionPerformed(ActionEvent click)
-			{
-				String savedChat = baseController.readTextFromFile();
-				if(savedChat.length()<1)
-				{
-					chatArea.setText("no text in file");
-				}
-				else
-				{
-					chatArea.saveText(chatArea,true);
-				}
-			}
-				
-		});
-		
-		saveChat.addActionListener(new ActionListener()
-		{
-			public void actionPerformed(ActionEvent click)
-			{
-				String savedChat = baseController.writeTextToFile();
-				if(chatArea.length()<1)
-				{
-					chatArea.setText("no text in chat area :()");
-				}
-				else
-				{
-					
-				}
-			}
-		});
-		
+//		loadButton.addActionListener(new ActionListener()
+//		{
+//			public void actionPerformed(ActionEvent click)
+//			{
+//				String savedChat = baseController.readTextFromFile();
+//				if(savedChat.length()<1)
+//				{
+//					chatArea.setText("no text in file");
+//				}
+//				else
+//				{
+//					chatArea.saveText(chatArea,true);
+//				}
+//			}
+//				
+//		});
+//		
+//		saveChat.addActionListener(new ActionListener()
+//		{
+//			public void actionPerformed(ActionEvent click)
+//			{
+//				String savedChat = baseController.writeTextToFile();
+//				if(chatArea.length()<1)
+//				{
+//					chatArea.setText("no text in chat area :()");
+//				}
+//				else
+//				{
+//					
+//				}
+//			}
+//		});
+//		
 	}
 
 	/**
